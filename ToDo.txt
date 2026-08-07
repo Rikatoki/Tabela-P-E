@@ -1,0 +1,50 @@
+AVISO -- DA PARA CRIAR UM REPOSITÓRIO DO PROJETO
+
+
+-Interface:
+    Criar uma interface para que o usuário interaja com o código
+
+    Tradução: 
+        * = Opção
+        - = Interface
+    ETAPAS DA INTERFACE
+        - Menu Principal:
+            -* Criar nova tabela (Terá o nome da tabela que será criada, + os dados que colocar.)
+                * Criar Tabela (CASO HAJA SISTEMA DE SAVE -> FAZ O SAVE DA TABELA CRIADA) | FEITO
+                    - Tabela (Mostrará a tabela dos dados)
+                        * Mudar nome da tabela / dado  | FEITO
+                        * Adicionar dado | FEITO
+                        * Remover dado | FEITO
+                        * Salvar (REQUER SISTEMA DE SAVE)
+                        * Apagar Tabela (REQUER SISTEMA DE SAVE)
+                        * Voltar
+                * Mudar nome da tabela / dado   | FEITO
+                * Adicionar dado    | FEITO
+                * Remover dado  | FEITO
+                * Voltar    | FEITO
+            -* Entrar numa tabela existente (Mostra apenas os nomes das tabelas salvas)
+                * Seleciona tabela
+                    - Tabela (MESMA COISA DO "- Tabela" ACIMA)
+            * Sair (Sai do programa)
+
+    Como irá funcionar?
+        Ideias:
+            Básico:
+                - Haverá opções para navegar no programa, que podem ser escolhidas por meio de um input.
+                    * Quais são as opções essenciais?
+                        "Entrar em uma tabela de dados" -> Caso exista uma já criada.
+                        "Criar nova tabela de dados"
+                        "Remover tabela de dados"
+                        "Sair"
+                    SAINDO DO BÁSICO
+                    * As opções podem ser mais constituídas, podendo ter condições para aparecerem ou não;
+                    * Podem haver uma ação atrelada à opção, ao invés de ser hardcoded por meio do input() (ex: if input == 1, elif input == 2...) -> FEITO
+                    * Criar uma classe para as opções. -> FEITO
+            Avançado:
+                - Guardar os dados em um .txt para que o programa lembre do último uso feito por meio de "saves".
+                    * O programa fará uma "save" para cada tipo de dado;
+                    * Se o usuário adicionar um dado com o nome de "Pessoas", terá um save com os dados do tipo "Pessoas" que guardará os dados que a pessoa adicionou;
+                    * O programa pode mostrar alguns dados gerais do uso de cada save como:
+                        "Save 1: Data_Type: Pessoas | Dados totais: 20
+                        "Save 2: Data_Type: Idades  | Dados totais: 15
+                    * A pessoa pode entrar num save e então modificar as informações como: Nome, adicionar dado, remover dado;

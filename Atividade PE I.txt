@@ -1,0 +1,17 @@
+Criar um programa que deverá:
+1 - Receber dados 
+
+2 - Organizar os dados recebidos do menor até o maior
+
+3 - Cada dado deve conter as seguintes informações:
+    1- O Dado:
+        O valor unitário do dado.
+    2- Frequência Absoluta (f):
+        Quantidade de vezes que o dado aparece.
+    3- Frequência Acumulativa (fa): 
+        Soma das frequências.
+        Para obter o fa: Com os dados organizados, deverá somar a frequência do dado atual com a frequência acumulativa do anterior, caso não tenha um anterior, a soma será com 0 (Ou seja, o fa será a frequência absoluta).
+    4- Frequência Relativa (fr):
+        Relação entre a frequência absoluta (f) com a quantidade total de dados. [f/N]
+
+4 - Representar os dados obtidos por meio de uma tabela, mostrando o dado, a frequência absoluta, a frequência acumulativa e a frequência relativa tanto em decimal quanto em porcento (%).
