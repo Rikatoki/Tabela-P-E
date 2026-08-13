@@ -10,7 +10,7 @@ class DataFrequency:
         self.fr: float = self.f / self.fa
 
 # Classe que conterá uma lista de dados e o organizará de ordem crescente e cada dado conterá sua frequência absoluta, relativa e acomulativa.
-class FrequencyBasic:
+class FrequencyTable:
     # Faz a configuração inicial da classe. Determina o nome do dado que está sendo trabalhado.
     def __init__(self, table_name:str = "", _data_type: str = ""):
         self.table_name: str = table_name.strip()

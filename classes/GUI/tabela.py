@@ -1,10 +1,10 @@
 from . import gui
-from .. import frequency_basic as fb
+from .. import frequency_table as fb
 
 class Table(gui.GUI):
-    def __init__(self, _fb: fb.FrequencyBasic):
+    def __init__(self, _fb: fb.FrequencyTable):
         super().__init__()
-        self.frequency_data: fb.FrequencyBasic = _fb
+        self.frequency_data: fb.FrequencyTable = _fb
 
         self.add_option(1, gui.Option("Mudar nome da tabela", self.change_table_name))
         self.add_option(2, gui.Option("Mudar nome dos dados", self.change_data_name))

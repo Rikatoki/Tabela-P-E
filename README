@@ -1,20 +1,20 @@
-# 📊 Tabela P&E
+# Tabela P&E
 
 > Um programa que cria uma tabela a partir de dados e mostra informações importantes a partir dos conceitos de probabilidade e estátistica.
 
-[Desenvolvendo] [Python] [MIT License]
+[Desenvolvendo] [Python] [MIT License] [Versão 1.01]
 
 ---
 
-## 📌 Sobre o projeto
+## Sobre o projeto
 
-- Com este software, é possível criar uma tabela de frequências facilmente apenas enviando os dados;
-- Eu criei este software para tanto melhorar a base das minhas habilidades de programação quanto para o meu estudo de Probabilidade e Estatística;
-- Atualmente o software pode apenas receber dados e criar uma tabela contendo [Frequência absoluta | Frequência acumulatica | Frequência relativa]. Além disso, ainda não possui um sistema de salvamento, é possível apenas criar uma tabela.
+- Com este programa, é possível criar uma tabela de frequências facilmente apenas enviando os dados;
+- Eu criei este programa para tanto melhorar a base das minhas habilidades de programação quanto para o meu estudo de Probabilidade e Estatística;
+- Atualmente o programa pode apenas receber dados e criar uma tabela contendo [Frequência absoluta | Frequência acumulatica | Frequência relativa]. Além disso, ainda não possui um sistema de salvamento, é possível apenas criar uma tabela.
 
 ---
 
-## ✨ Funcionalidades
+## Funcionalidades
 
 - [x] Criar tabela de frequência
 - [x] Adicionar dados
@@ -28,11 +28,6 @@
 
 ---
 
-## 🖥️ Demonstração
-
-```text
-========================================
-       Tabela de frequência de dados
-========================================
-1 - Criar Nova Tabela
-0 - Fechar o Programa
+## Como Abrir o Programa
+Tenha o python versão: 3.x instalado\
+Abra o arquivo main.py

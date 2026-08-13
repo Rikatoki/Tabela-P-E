@@ -1,17 +1,16 @@
-from classes import frequency_basic as frequency
+from classes import frequency_table as frequency
 
 print("teste 1")
 
-teste = frequency.FrequencyBasic("Pessoas")
+teste = frequency.FrequencyTable("Pessoas")
 
 teste.add_data(10)
 teste.add_data(10)
 teste.add_data(10)
 teste.add_data(10)
 
-teste.add_data(14)
-teste.add_data(14)
-teste.add_data(14)
+teste.add_data(14, 3)
+
 
 teste.add_data(5)
 teste.add_data(5)
