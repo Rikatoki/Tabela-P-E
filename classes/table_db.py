@@ -63,6 +63,10 @@ class TableDB():
     def has_table(self, table_name: str) -> bool:
         return True if self.get_table_id(table_name) != None else False
 
+    def has_table_id(self, table_id: int) -> bool:
+        self.cursor.execute("SELECT * FROM Tabela WHERE id = ?", (table_id,))
+        return True if self.cursor.fetchone() != None else False
+
     def add_table(self, table_name: str, data_name: str, datas: list[tuple]) -> int:
         if not self.has_table(table_name):
             self.cursor.execute("INSERT INTO Tabela(name, data_name) VALUES (?, ?)", (table_name, data_name,))

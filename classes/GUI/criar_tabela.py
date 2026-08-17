@@ -40,7 +40,17 @@ Dados: {datas_str if datas_str != "" else "Nenhum dado inserido."}
 
     def create_table(self):
         from .tabela import Table
-        self.change_gui(Table(self.frequency_table))
+        from .. import table_db as _db
+
+        db: _db.TableDB = _db.TableDB()
+
+        datas: list[tuple] = []
+        for d in self.frequency_table.data:
+            datas.append((d.value, d.f,))
+        
+        db_id: int = db.add_table(self.frequency_table.table_name, self.frequency_table.data_name, datas)
+
+        self.change_gui(Table(self.frequency_table, db_id))
 
     def back(self):
         from .menu_principal import MenuPrincipal

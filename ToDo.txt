@@ -4,6 +4,7 @@ Aqui, ficam ideias ou objetivos em relação ao programa.
 
 - Sistema de salvamento | EM ANDAMENTO
     * Por meio do SQLite
+    AINDA NECESSÁRIO TESTAR NA GUI.
 
 Ideias:
     * As opções poderiam ter condições para determinar se elas aparecem ou não;
