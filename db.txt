@@ -21,15 +21,17 @@ Como a classe TableDB pode funcionar?
         delete_datas(self, table_id) | FEITO
 
         O QUE FALTA AGORA É O CÓDIGO NECESSÁRIO PARA QUE A INTERFACE CONSIGA UTILIZAR NO MÁXIMO
-            get_all_tables(self) -> list[tuple] 
-            get_table(self, table_name) -> list[tuple] (Index 0 para Tabela | Index 1 para tabelaFrequência)
-            DA PARA MELHORAR A LÓGICA
-
-
-
+            get_all_tables(self) -> list[tuple] | FEITO
+            get_table(self, table_name) -> list[tuple] (Index 0 para Tabela | Index 1 para tabelaFrequência) | FEITO
+            DA PARA MELHORAR A LÓGICA 2x
 
     Quem deve usar o TableDB para salvar as tabelas?
         GUI (O usuário controla quando os salvamentos ocorrem.)
             - Opção de salvar;
             - Opção de retornar;
 
+Dicas de melhorias:
+    Criar uma classe para representar os dados da tabela. (AllTablesDataDB | TableDataDB)
+        - Isso permite que código fica mais tipado.
+        - Evita o uso de dicionário com chaves que é necessário voltar à raiz para saber qual é o valor.
+        - Muito mais fácil de trabalhar.

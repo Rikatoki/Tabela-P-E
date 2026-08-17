@@ -14,6 +14,36 @@ class TableDB():
             id = result[0]
         return id
 
+    def get_all_tables(self) -> list[dict]:
+        self.cursor.execute("SELECT * FROM Tabela")
+        rows: list[tuple] = self.cursor.fetchall()
+        tables: list[dict] = [{
+            "id": r[0],
+            "name": r[1],
+            "data_name": r[2]
+        } for r in rows]
+        return tables
+
+    def get_table(self, table_id: int) -> dict:
+        table: dict = {
+            "Tabela": dict(),
+            "tabelaFrequência": list()
+        }
+        self.cursor.execute("SELECT * FROM Tabela WHERE id = ?", (table_id,))
+        tabela: tuple = self.cursor.fetchone()
+        table["Tabela"] = {
+            "id": table_id,
+            "name": tabela[1],
+            "data_name": tabela[2]
+        }
+        self.cursor.execute("SELECT * FROM tabelaFrequência WHERE tabela_id = ?", (table_id,))
+        datas: list[tuple] = self.cursor.fetchall()
+        table["tabelaFrequência"] = [{
+            "data": d[1],
+            "frequency": d[2]
+        } for d in datas]
+        return table
+        
     def has_table(self, table_name: str) -> bool:
         return True if self.get_table_id(table_name) != None else False
 

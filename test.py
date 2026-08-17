@@ -3,20 +3,48 @@ from classes import table_db as db
 
 table = frequency.FrequencyTable("O Teste", "Números")
 table_db = db.TableDB()
+
+# Função que mostra no terminal os dados relacionado ao ID da tabela.
+def show_table(table_id: int):
+    table_dict: dict = table_db.get_table(table_id)
+
+    print(f"ID: {table_dict["Tabela"]["id"]} | Nome da tabela: {table_dict["Tabela"]["name"]} | Nome dos dados: {table_dict["Tabela"]["data_name"]}")
+
+    print("Dados atuais")
+
+    for d in table_dict["tabelaFrequência"]:
+        d: dict
+        print(f"Dado: {d["data"]} | Frequência: {d["frequency"]}")
+
+# INÍCIO
 print("APRENDENDO BANCO DE DADOS")
 
-print("Adicionando dados...")
+# MOSTRANDO TODOS OS DADOS DO BANCO
+print("Dados existentes")
+
+tables: list[dict] = table_db.get_all_tables()
+for t in tables:
+    print(f" {t["id"]:^5} | {t["name"]:^30} | {t["data_name"]:^30} |")
+
+# ADICIONANDO DADOS NA NOVA TABELA
+print("Adicionando dados na nova tabela...")
 table.add_data(1, 2)
 table.add_data(3,5)
 table.add_data(5, 3)
 
-print("salvando na tabela...")
+# SALVANDO A TABELA NO BANCO
+print("salvando no banco...")
 table_id: int = table_db.add_table(table.table_name, table.data_name, table.get_all_datas())
 
 print("Salvou!!!")
 
 print("É importante guardar o ID da tabela.")
 
+# MOSTRA OS DADOS DO BANCO DA TABELA ATUAL NO TERMINAL
+print("Tabela atual no banco de dados")
+show_table(table_id)
+
+# MUDANDO ALGUNS DADOS NA TABELA E NO BANCO
 table.data_name = "Alunos"
 table.table_name = "Estudandes de Ciências da Computação"
 
@@ -27,13 +55,17 @@ table_db.modify_table_names(table_id, table.table_name, table.data_name)
 
 print("Nome dos dados modificados.")
 
+# DADOS DO BANCO APÓS AS MUDANÇAS
+print("Dados no banco após a mudança:")
+show_table(table_id)
 
-print("Testes concluídos. Para acabar, deletar a tabela.")
+# CONCLUSÃO DO TESTE
+print(f"Testes concluídos. Para acabar, deletar a tabela. {table_id}")
 print("Deletando...")
 
 table_db.delete_table(table_id)
 
-print("Escluído com sucesso!")
+print("Excluído com sucesso!")
 
 '''
 con = db.sql.connect("teste.db")
