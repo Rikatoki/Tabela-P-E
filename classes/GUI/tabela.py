@@ -24,7 +24,7 @@ class Table(gui.GUI):
         self.frequency_data.table_name = input("Digite o novo nome: ")
 
     def change_data_name(self):
-        self.frequency_data.data_type = input("Digite o novo nome: ")
+        self.frequency_data.data_name = input("Digite o novo nome: ")
 
     def add_data(self):
         self.frequency_data.add_data_by_input()

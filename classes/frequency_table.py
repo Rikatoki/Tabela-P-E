@@ -1,7 +1,7 @@
 # Classe que conterá o valor do dado e suas frequências.
 class DataFrequency:
-    def __init__(self, data: float, absolute_frequency: int = 1):
-        self.data: float = data
+    def __init__(self, value: float, absolute_frequency: int = 1):
+        self.value: float = value
         # Frequência Absoluta
         self.f: int = absolute_frequency
         # Frequência Acumulativa
@@ -12,28 +12,28 @@ class DataFrequency:
 # Classe que conterá uma lista de dados e o organizará de ordem crescente e cada dado conterá sua frequência absoluta, relativa e acomulativa.
 class FrequencyTable:
     # Faz a configuração inicial da classe. Determina o nome do dado que está sendo trabalhado.
-    def __init__(self, table_name:str = "", _data_type: str = ""):
+    def __init__(self, table_name:str = "", _data_name: str = ""):
         self.table_name: str = table_name.strip()
-        self.data_type = _data_type.strip()
+        self.data_name = _data_name.strip()
         self.data: list[DataFrequency] = []
 
     # Retorna uma representação dos dados em formato de tabela.
     def __str__(self) -> str:
-        text: str = f"{self.data_type.capitalize()}\n  Data  | Frequência Absoluta | Frequência Acumulativa | Frequência Relativa \n"
+        text: str = f"{self.data_name.capitalize()}\n  Data  | Frequência Absoluta | Frequência Acumulativa | Frequência Relativa \n"
         for i in self.data:
-            text += f"{i.data:^8}|{i.f:^21}|{i.fa:^24}|{i.fr:^21}\n"
+            text += f"{i.value:^8}|{i.f:^21}|{i.fa:^24}|{i.fr:^21}\n"
         return text
     
     # Ordena a lista de dados do menor até o maior.
     def _sort_data_list(self):
         if len(self.data) <= 1:
             return None
-        self.data.sort(key= lambda i: i.data)
+        self.data.sort(key= lambda i: i.value)
 
     # Retorna o DataFrequency do dado, caso ele existe na lista.
     def _get_data(self, data: float) -> DataFrequency:
         for i in self.data:
-            if i.data == data:
+            if i.value == data:
                 return i
 
     # Adiciona um dado na lista.
@@ -93,10 +93,16 @@ class FrequencyTable:
                 print("Digite apenas númeoros inteiros igual ou acima 0.")
         self.remove_data(data, quantity)
 
+    def get_all_datas(self) -> list[tuple]:
+        datas: list[tuple] = []
+        for data in self.data:
+            datas.append((data.value, data.f))
+        return datas
+
     def get_all_data_string(self) -> str:
         all_data: str = ""
         for i in range(len(self.data)):
-            all_data += str(self.data[i].data)
+            all_data += str(self.data[i].value)
             if i != len(self.data) - 1:
                 all_data += ", "
         return all_data

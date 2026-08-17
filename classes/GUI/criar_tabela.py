@@ -15,7 +15,7 @@ class CriarTabela(gui.GUI):
         
     def run(self):
         datas_str: str = self.frequency_table.get_all_data_string()
-        data_name: str = self.frequency_table.data_type
+        data_name: str = self.frequency_table.data_name
 
         print(f"""{self.create_line()}
 {self.centralize_str(self.frequency_table.table_name)}
@@ -30,7 +30,7 @@ Dados: {datas_str if datas_str != "" else "Nenhum dado inserido."}
         self.frequency_table.table_name = input("Digite o novo nome: ")
 
     def change_data_name(self):
-        self.frequency_table.data_type = input("Digite o novo nome: ")
+        self.frequency_table.data_name = input("Digite o novo nome: ")
 
     def add_data(self):
         self.frequency_table.add_data_by_input()
