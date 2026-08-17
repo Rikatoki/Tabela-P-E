@@ -1,5 +1,37 @@
 import sqlite3 as sql
 
+class TabelaDB():
+    def __init__(self, id: int, name: str, data_name: str):
+        self.id: int = id
+        self.name: str = name
+        self.data_name: str = data_name
+
+class tabelaFrequênciaDB():
+    def __init__(self, tabela_id: int, data: float, frequency: int):
+        self.tabela_id: int = tabela_id
+        self.data: float = data
+        self.frequency: int = frequency
+
+class AllTableDataDB():
+    def __init__(self):
+        self.table_rows: list[TabelaDB] = []
+
+    def define_rows(self, rows: list[tuple]):
+        for r in rows:
+            self.table_rows.append(TabelaDB(r[0], r[1], r[2]))
+            
+class TableDataDB():
+    def __init__(self):
+        self.table: TabelaDB = None
+        self.table_datas: list[tabelaFrequênciaDB] = []
+
+    def define_table_row(self, row: tuple):
+        self.table = TabelaDB(row[0], row[1], row[2])
+
+    def define_table_data_rows(self, rows: list[tuple]):
+        for r in rows:
+            self.table_datas.append(tabelaFrequênciaDB(r[0], r[1], r[2]))
+
 class TableDB():
     def __init__(self):
         self.connection: sql.Connection = sql.connect("table.db")
@@ -14,34 +46,18 @@ class TableDB():
             id = result[0]
         return id
 
-    def get_all_tables(self) -> list[dict]:
+    def get_all_tables(self) -> AllTableDataDB:
         self.cursor.execute("SELECT * FROM Tabela")
-        rows: list[tuple] = self.cursor.fetchall()
-        tables: list[dict] = [{
-            "id": r[0],
-            "name": r[1],
-            "data_name": r[2]
-        } for r in rows]
+        tables: AllTableDataDB = AllTableDataDB()
+        tables.define_rows(self.cursor.fetchall())
         return tables
 
-    def get_table(self, table_id: int) -> dict:
-        table: dict = {
-            "Tabela": dict(),
-            "tabelaFrequência": list()
-        }
+    def get_table(self, table_id: int) -> TableDataDB:
+        table: TableDataDB = TableDataDB()
         self.cursor.execute("SELECT * FROM Tabela WHERE id = ?", (table_id,))
-        tabela: tuple = self.cursor.fetchone()
-        table["Tabela"] = {
-            "id": table_id,
-            "name": tabela[1],
-            "data_name": tabela[2]
-        }
+        table.define_table_row(self.cursor.fetchone())
         self.cursor.execute("SELECT * FROM tabelaFrequência WHERE tabela_id = ?", (table_id,))
-        datas: list[tuple] = self.cursor.fetchall()
-        table["tabelaFrequência"] = [{
-            "data": d[1],
-            "frequency": d[2]
-        } for d in datas]
+        table.define_table_data_rows(self.cursor.fetchall())
         return table
         
     def has_table(self, table_name: str) -> bool:

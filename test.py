@@ -6,15 +6,14 @@ table_db = db.TableDB()
 
 # Função que mostra no terminal os dados relacionado ao ID da tabela.
 def show_table(table_id: int):
-    table_dict: dict = table_db.get_table(table_id)
+    table_data: db.TableDataDB = table_db.get_table(table_id)
 
-    print(f"ID: {table_dict["Tabela"]["id"]} | Nome da tabela: {table_dict["Tabela"]["name"]} | Nome dos dados: {table_dict["Tabela"]["data_name"]}")
+    print(f"ID: {table_data.table.id} | Nome da tabela: {table_data.table.name} | Nome dos dados: {table_data.table.data_name}")
 
     print("Dados atuais")
 
-    for d in table_dict["tabelaFrequência"]:
-        d: dict
-        print(f"Dado: {d["data"]} | Frequência: {d["frequency"]}")
+    for d in table_data.table_datas:
+        print(f"Dado: {d.data} | Frequência: {d.frequency}")
 
 # INÍCIO
 print("APRENDENDO BANCO DE DADOS")
@@ -22,9 +21,9 @@ print("APRENDENDO BANCO DE DADOS")
 # MOSTRANDO TODOS OS DADOS DO BANCO
 print("Dados existentes")
 
-tables: list[dict] = table_db.get_all_tables()
-for t in tables:
-    print(f" {t["id"]:^5} | {t["name"]:^30} | {t["data_name"]:^30} |")
+table_datas: db.AllTableDataDB = table_db.get_all_tables()
+for t in table_datas.table_rows:
+    print(f" {t.id:^5} | {t.name:^30} | {t.data_name:^30} |")
 
 # ADICIONANDO DADOS NA NOVA TABELA
 print("Adicionando dados na nova tabela...")
