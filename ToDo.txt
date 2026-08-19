@@ -1,14 +1,16 @@
-Aqui, ficam ideias ou objetivos em relação ao programa.
-
-- Sistema de interefaces | FEITO
-
-- Sistema de salvamento | EM ANDAMENTO
-    * Por meio do SQLite
-    AINDA NECESSÁRIO TESTAR NA GUI.
+Ideias ou objetivos em relação ao programa.
 
 Ideias:
-    * As opções poderiam ter condições para determinar se elas aparecem ou não;
+    - Sistema de interefaces | FEITO
+        - Sugestões:
+            * As opções poderiam ter condições para determinar se elas aparecem ou não; {Não é muito difícil de implementar.}
 
-    * Cada tabela poderia estar atrelada à um "save":
-        Com as tabelas sendo ligadas à um save, eu poderia dividir a parte de mudar o nome dos dados e o nome da tabela dentro da modificação deste save, assim reduzindo as opções dentro da interface das tabelas.
-        Não necessariamente pode ser algo robusto, como uma classe, mas sim como algo ainda mais abstrato, um conceito que existe mas que não faz parte do código. Ex: Pode haver citação da interface de modificar o "save", mas praticamente ele estaria apenas modificando a classe da tabela.
+    - Sistema de salvamento | FEITO
+        * Por meio do SQLite
+    
+    - Subtstutir toda a interface por HTML.
+        - Utilizar Flask
+
+Objetivos:
+    | Este projeto tem o propósito de crescer a minha experência como desenvolvedor de software.
+    | Pretendo fazer um app, uma imitação de site. Porém, com o intuito de usar localmente, sem intenção de hospedar.
