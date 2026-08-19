@@ -1,27 +1,67 @@
-from classes import frequency_basic as frequency
+from classes import frequency_table as frequency
+from classes import table_db as db
 
-print("teste 1")
+table = frequency.FrequencyTable("O Teste", "Números")
+table_db = db.TableDB()
 
-teste = frequency.FrequencyBasic("Pessoas")
+# Função que mostra no terminal os dados relacionado ao ID da tabela.
+def show_table(table_id: int):
+    table_data: db.TableDataDB = table_db.get_table(table_id)
 
-teste.add_data(10)
-teste.add_data(10)
-teste.add_data(10)
-teste.add_data(10)
+    print(f"ID: {table_data.table.id} | Nome da tabela: {table_data.table.name} | Nome dos dados: {table_data.table.data_name}")
 
-teste.add_data(14)
-teste.add_data(14)
-teste.add_data(14)
+    print("Dados atuais")
 
-teste.add_data(5)
-teste.add_data(5)
-teste.add_data(5)
+    for d in table_data.table_datas:
+        print(f"Dado: {d.data} | Frequência: {d.frequency}")
 
-teste.add_data(40)
+# INÍCIO
+print("APRENDENDO BANCO DE DADOS")
 
-print(teste)
+# MOSTRANDO TODOS OS DADOS DO BANCO
+print("Dados existentes")
 
-teste.remove_data(14)
+table_datas: db.AllTableDataDB = table_db.get_all_tables()
+for t in table_datas.table_rows:
+    print(f" {t.id:^5} | {t.name:^30} | {t.data_name:^30} |")
 
-print(teste)
+# ADICIONANDO DADOS NA NOVA TABELA
+print("Adicionando dados na nova tabela...")
+table.add_data(1, 2)
+table.add_data(3,5)
+table.add_data(5, 3)
 
+# SALVANDO A TABELA NO BANCO
+print("salvando no banco...")
+table_id: int = table_db.add_table(table.table_name, table.data_name, table.get_all_datas())
+
+print("Salvou!!!")
+
+print("É importante guardar o ID da tabela.")
+
+# MOSTRA OS DADOS DO BANCO DA TABELA ATUAL NO TERMINAL
+print("Tabela atual no banco de dados")
+show_table(table_id)
+
+# MUDANDO ALGUNS DADOS NA TABELA E NO BANCO
+table.data_name = "Alunos"
+table.table_name = "Estudandes de Ciências da Computação"
+
+print("Opa, troquei o nome de data e tabela.")
+print("MUDANDO OS NOMES NO BANCO DE DADOS")
+
+table_db.modify_table_names(table_id, table.table_name, table.data_name)
+
+print("Nome dos dados modificados.")
+
+# DADOS DO BANCO APÓS AS MUDANÇAS
+print("Dados no banco após a mudança:")
+show_table(table_id)
+
+# CONCLUSÃO DO TESTE
+print(f"Testes concluídos. Para acabar, deletar a tabela. {table_id}")
+print("Deletando...")
+
+table_db.delete_table(table_id)
+
+print("Excluído com sucesso!")

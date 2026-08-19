@@ -1,0 +1,37 @@
+Sistema de salvamento
+
+SQLite
+
+Tabela
+| id (PK) | name (STRING, Unique, Not NULL) | data_name (String)
+
+tabelaFrequência
+| id (PK) | tabela_id (FK[Tabela], Not NULL) | data (int, Not NULL) | frequency (int, Not NULL)
+
+
+Como a classe TableDB pode funcionar?
+    Ainda será necessário alguns refinamentos, para que não tenha problemas futuros.
+    Possíveis funções:
+        get_table_id(self, table_name:str) -> int | FEITO 
+        create_table(self, table_name: string, data_name, datas: Array[tuple(int,int)]) -> int | FEITO
+        remove_table(self, table_id:int) -> void | FEITO
+        has_table(self, table_name) -> bool | FEITO
+        modify_table_names(self, table_id: int, new_name:str=None, new_name_data:str=None) | FEITO
+        modify_table_datas(self, table_id: int, datas: Array[tuple(int,int)]) | FEITO
+        delete_datas(self, table_id) | FEITO
+
+        O QUE FALTA AGORA É O CÓDIGO NECESSÁRIO PARA QUE A INTERFACE CONSIGA UTILIZAR NO MÁXIMO
+            get_all_tables(self) -> list[tuple] | FEITO
+            get_table(self, table_name) -> list[tuple] (Index 0 para Tabela | Index 1 para tabelaFrequência) | FEITO
+            DA PARA MELHORAR A LÓGICA 2x
+
+    Quem deve usar o TableDB para salvar as tabelas?
+        GUI (O usuário controla quando os salvamentos ocorrem.)
+            - Opção de salvar;
+            - Opção de retornar;
+
+Dicas de melhorias:
+    Criar uma classe para representar os dados da tabela. (AllTablesDataDB | TableDataDB)
+        - Isso permite que código fica mais tipado.
+        - Evita o uso de dicionário com chaves que é necessário voltar à raiz para saber qual é o valor.
+        - Muito mais fácil de trabalhar.
