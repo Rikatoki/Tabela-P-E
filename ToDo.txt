@@ -14,3 +14,7 @@ Ideias:
 Objetivos:
     | Este projeto tem o propósito de crescer a minha experência como desenvolvedor de software.
     | Pretendo fazer um app, uma imitação de site. Porém, com o intuito de usar localmente, sem intenção de hospedar.
+
+    | Melhorar o que já existe antes de adicionar novas coisas.
+    
+    | Adicionar mais cálculos estatísticos.
