@@ -2,7 +2,7 @@
 
 > Um programa que cria uma tabela a partir de dados e mostra informações importantes a partir dos conceitos de probabilidade e estátistica (P&E).
 
-[Desenvolvendo] [Python] [MIT License] [Versão 1.1.1]
+[Desenvolvendo] [Python] [MIT License] [Versão 1.1.2]
 
 ---
 
@@ -14,12 +14,9 @@
 - Mudanças no CLI da tabela:
     - Adição de opção para salvar a tabela no banco de dados
 
-#### [ 1.1.1 ]
-- Mudança nas nomenclaturas das classes
-    - Adicionado o préfixo CLI para classes que herdam de CLI
-    - Nome de GUI para CLI (Comand-Line-Interface)
-- Mais seperação de reponsabilidade das classes
-- Mudança do nome da tabela "tabelaFrequência" para "tabelaDados"
+#### [ 1.1.2 ]
+- Adicionada validação de input ao trocar nomes dos dados e das tabelas no CLI
+- Gambiarra removida e adição de CREATE IF NOT EXISTS no banco de dados
 
 ## Sobre o projeto
 

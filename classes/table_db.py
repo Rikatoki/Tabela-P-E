@@ -38,6 +38,22 @@ class TableDB():
         self.cursor: sql.Cursor = self.connection.cursor()
         self._create_tables()
 
+    def _create_tables(self) -> None:
+        self.cursor.execute("""
+        CREATE TABLE IF NOT EXISTS Tabela(
+            id INTEGER PRIMARY KEY AUTOINCREMENT, 
+            name VARCHAR(50) UNIQUE NOT NULL,
+            data_name VARCHAR(20)
+        )
+        """)
+        self.cursor.execute("""
+        CREATE TABLE IF NOT EXISTS tabelaDados(
+            tabela_id INTEGER REFERENCES Tabela(id) NOT NULL, 
+            data INTEGER NOT NULL, 
+            frequency INTEGER NOT NULL
+        )
+    """)
+    
     def get_table_id(self, table_name: str) -> int | None:
         id: int = None
         self.cursor.execute(f"SELECT id FROM Tabela WHERE name = ?", (table_name,))
@@ -95,25 +111,3 @@ class TableDB():
         self.delete_datas(table_id)
         self.cursor.execute("DELETE FROM Tabela WHERE id = ?", (table_id,))
         self.connection.commit()
-
-    def _create_tables(self) -> None:
-        try:
-            self.cursor.execute("""
-            CREATE TABLE Tabela(
-                id INTEGER PRIMARY KEY AUTOINCREMENT, 
-                name VARCHAR(50) UNIQUE NOT NULL,
-                data_name VARCHAR(20)
-            )
-            """)
-        except sql.OperationalError:
-            None
-        try:
-            self.cursor.execute("""
-            CREATE TABLE tabelaDados(
-                tabela_id INTEGER REFERENCES Tabela(id) NOT NULL, 
-                data INTEGER NOT NULL, 
-                frequency INTEGER NOT NULL
-            )
-        """)
-        except sql.OperationalError:
-            None
