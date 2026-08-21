@@ -51,7 +51,7 @@ class CLIMainMenu(cli.CLI):
         if table_id is None:
             return None
     
-        from .cli_tabela import CLIFrequencyTable
+        from .cli_frequency_table import CLIFrequencyTable
         from .. import frequency_table as ft
         
         td: _db.TableDataDB = db.get_table(table_id)

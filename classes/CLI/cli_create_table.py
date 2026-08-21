@@ -40,7 +40,7 @@ Dados: {datas_str if datas_str != "" else "Nenhum dado inserido."}
 
 
     def create_table(self):
-        from .cli_tabela import CLIFrequencyTable
+        from .cli_frequency_table import CLIFrequencyTable
         from .. import table_db as _db
 
         db: _db.TableDB = _db.TableDB()
