@@ -1,13 +1,13 @@
-import classes.GUI.gui as gui
-import classes.GUI.menu_principal as MENU
+from classes.CLI import cli
+from classes.CLI import cli_main_menu as MENU
 
-GUI_MANAGER: gui.GUIManager = gui.GUIManager()
+CLI_MANAGER: cli.CLIManager = cli.CLIManager()
 
-gui.GUI.manager = GUI_MANAGER
+cli.CLI.manager = CLI_MANAGER
 
-MENU_PRINCIPAL: MENU.MenuPrincipal = MENU.MenuPrincipal()
+MENU_PRINCIPAL: MENU.CLIMainMenu = MENU.CLIMainMenu()
 
-GUI_MANAGER.change_gui(MENU_PRINCIPAL)
+CLI_MANAGER.change_gui(MENU_PRINCIPAL)
 
 while True:
-    GUI_MANAGER.update()
+    CLI_MANAGER.update()

@@ -31,7 +31,7 @@ class FrequencyTable:
         self.data.sort(key= lambda i: i.value)
 
     # Retorna o DataFrequency do dado, caso ele existe na lista.
-    def _get_data(self, data: float) -> DataFrequency:
+    def get_data(self, data: float) -> DataFrequency:
         for i in self.data:
             if i.value == data:
                 return i
@@ -40,33 +40,16 @@ class FrequencyTable:
     def add_data(self, data: float, quantity: int = 1) -> None:
         if quantity <= 0:
             return
-        _data: DataFrequency = self._get_data(data)
+        _data: DataFrequency = self.get_data(data)
         if _data:
             _data.f += quantity
         else:
             self.data.append(DataFrequency(data, quantity))
         self.update()
 
-    def add_data_by_input(self):
-        data: float = None
-        quantity: int = None
-        while data == None:
-            try:
-                data = float(input("Digite o valor do dado: "))
-            except ValueError:
-                print("Digite apenas números.")
-        while quantity == None or quantity < 0:
-            try:
-                quantity = int(input(f"Quantas vezes o dado ({data}) ocorre? "))
-            except ValueError:
-                print("Digite apenas númeoros inteiros igual ou acima 0.")
-            if quantity < 0:
-                print("Digite apenas númeoros inteiros igual ou acima 0.")
-        self.add_data(data, quantity)
-
     # Remove um dado da lista.
     def remove_data(self, data: float, quantity: int = 1) -> None:
-        _data = self._get_data(data)
+        _data = self.get_data(data)
         if quantity <= 0 and _data == None:
             return
         _data.f -= quantity
@@ -74,38 +57,12 @@ class FrequencyTable:
             self.data.remove(_data)
         self.update()
 
-    def remove_data_by_input(self):
-        data: float = None
-        quantity: int = None
-        while data == None:
-            try:
-                data = float(input("Digite o valor do dado à remover: "))
-            except ValueError:
-                print("Digite apenas números.")
-        if self._get_data(data) == None:
-            return print("Valor não encontrado na tabela.")
-        while quantity == None or quantity < 0:
-            try:
-                quantity = int(input(f"Remover em quantas vezes o dado ({data})? "))
-            except ValueError:
-                print("Digite apenas númeoros inteiros igual ou acima 0.")
-            if quantity < 0:
-                print("Digite apenas númeoros inteiros igual ou acima 0.")
-        self.remove_data(data, quantity)
-
+    # Retorna todos os dados numa lista de tuplas onde tuple(1,2) 1 - Valor, 2 - Frequência do valor.
     def get_all_datas(self) -> list[tuple]:
         datas: list[tuple] = []
         for data in self.data:
             datas.append((data.value, data.f))
         return datas
-
-    def get_all_data_string(self) -> str:
-        all_data: str = ""
-        for i in range(len(self.data)):
-            all_data += str(self.data[i].value)
-            if i != len(self.data) - 1:
-                all_data += ", "
-        return all_data
 
     # Atualiza os dados, requer ser chamado após cada mudança em self.data.
     def update(self):

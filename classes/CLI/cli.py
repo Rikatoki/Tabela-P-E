@@ -14,8 +14,8 @@ class Option:
             return self.func()
 
 # Classe modelo para a criação da interface do programa.
-class GUI:
-    manager: GUIManager
+class CLI:
+    manager: CLIManager
     
     def __init__(self):
         self.options: dict[int, Option] = {}
@@ -24,7 +24,7 @@ class GUI:
     def run(self) -> None:
         print("Nenhuma interface criada.")
 
-    def change_gui(self, new_gui: GUI) -> None:
+    def change_gui(self, new_gui: CLI) -> None:
         self.manager.change_gui(new_gui)
 
     def show_options(self) -> str:
@@ -62,13 +62,13 @@ class GUI:
     def centralize_str(self, string: str, size:int = 75) -> str:
         return f"{string:^{size}}"
 
-class GUIManager:
-    current_gui: GUI = None
+class CLIManager:
+    current_gui: CLI = None
 
     def update(self):
         self.current_gui.run()
 
-    def change_gui(self, new_gui: GUI):
+    def change_gui(self, new_gui: CLI):
         if self.current_gui != None:
             del self.current_gui
         self.current_gui = new_gui

@@ -56,7 +56,7 @@ class TableDB():
         table: TableDataDB = TableDataDB()
         self.cursor.execute("SELECT * FROM Tabela WHERE id = ?", (table_id,))
         table.define_table_row(self.cursor.fetchone())
-        self.cursor.execute("SELECT * FROM tabelaFrequência WHERE tabela_id = ?", (table_id,))
+        self.cursor.execute("SELECT * FROM tabelaDados WHERE tabela_id = ?", (table_id,))
         table.define_table_data_rows(self.cursor.fetchall())
         return table
         
@@ -84,11 +84,11 @@ class TableDB():
     def modify_table_datas(self, table_id: int, datas: list[tuple]) -> None:
         self.delete_datas(table_id)
         params: list[tuple] = [((table_id, d[0], d[1],)) for d in datas]
-        self.cursor.executemany("INSERT INTO tabelaFrequência(tabela_id, data, frequency) VALUES (?, ?, ?)", params)
+        self.cursor.executemany("INSERT INTO tabelaDados(tabela_id, data, frequency) VALUES (?, ?, ?)", params)
         self.connection.commit()
 
     def delete_datas(self, table_id: int) -> None:
-        self.cursor.execute("DELETE FROM tabelaFrequência WHERE tabela_id = ?", (table_id,))
+        self.cursor.execute("DELETE FROM tabelaDados WHERE tabela_id = ?", (table_id,))
         self.connection.commit()
 
     def delete_table(self, table_id: int) -> None:
@@ -109,7 +109,7 @@ class TableDB():
             None
         try:
             self.cursor.execute("""
-            CREATE TABLE tabelaFrequência(
+            CREATE TABLE tabelaDados(
                 tabela_id INTEGER REFERENCES Tabela(id) NOT NULL, 
                 data INTEGER NOT NULL, 
                 frequency INTEGER NOT NULL
